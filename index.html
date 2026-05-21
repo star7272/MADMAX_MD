@@ -387,6 +387,15 @@ CONNECT BOT
 
 </a>
 
+<!-- SYSTEM LOADING -->
+<div class="loading-section">
+    <h2 class="loading-text">SYSTEM LOADING...</h2>
+
+    <div class="loading-bar">
+        <div class="loading-progress"></div>
+    </div>
+</div>
+
 <!-- BOT STEPS -->
 
 <div class="steps">
@@ -402,6 +411,95 @@ CONNECT BOT
 </div>
 
 </section>
+
+<body>
+
+<!-- TERMINAL -->
+
+<div class="terminal" id="terminal"></div>
+
+</div>
+
+<script>
+
+/* TERMINAL */
+
+const terminal =
+document.getElementById("terminal");
+
+const lines = [
+
+"> Booting SKILLI-TECH system...",
+"> Loading matrix interface...",
+"> Checking VPS servers...",
+"> Connecting secure node...",
+"> Injecting bot framework...",
+"> Running diagnostics...",
+"> SYSTEM ONLINE ✔",
+"> Welcome Admin 🚀"
+
+];
+
+let i = 0;
+let charIndex = 0;
+let currentLine = "";
+
+function typeEffect(){
+
+if(i < lines.length){
+
+if(charIndex < lines[i].length){
+
+currentLine += lines[i][charIndex];
+
+terminal.innerHTML =
+lines.slice(0, i).join("\n")
++ "\n" + currentLine;
+
+charIndex++;
+
+setTimeout(typeEffect,40);
+
+}else{
+
+currentLine = "";
+charIndex = 0;
+i++;
+
+setTimeout(typeEffect,500);
+
+}
+
+}else{
+
+liveMode();
+
+}
+
+}
+
+function liveMode(){
+
+setInterval(() => {
+
+const time =
+new Date().toLocaleTimeString();
+
+terminal.innerHTML +=
+"\n[SYS LOG] " +
+time +
+" - System stable";
+
+terminal.scrollTop =
+terminal.scrollHeight;
+
+},3000);
+
+}
+
+typeEffect();
+
+</script>
 
 <!-- WEBSITE INSIDE WEBSITE -->
 
@@ -595,6 +693,7 @@ window.onload = () => {
 }
 </script>
 
+
 <script>
 
 /* AUTO YEAR */
@@ -624,59 +723,169 @@ setInterval(updateClock,1000);
 
 updateClock();
 
+
 </script>
 
-<script>
+<style>
 
-    <!-- TERMINAL GOES HERE -->
+/* LOADING SECTION */
+.loading-section{
+    width:100%;
+    margin-top:40px;
+    text-align:center;
+}
 
-<div class="terminal" id="terminal"></div>
-const terminal = document.getElementById("terminal");
+/* TEXT */
+.loading-text{
+    color:#7CFF00;
+    font-size:40px;
+    font-family:monospace;
+    letter-spacing:5px;
+    margin-bottom:20px;
+    text-shadow:0 0 10px #00ff00;
+}
 
-const lines = [
-"> Booting SKILLI-TECH system...",
-"> Loading matrix interface...",
-"> Checking VPS servers...",
-"> Connecting secure node...",
-"> Injecting bot framework...",
-"> Running diagnostics...",
-"> SYSTEM ONLINE ✔",
-"> Welcome Admin 🚀"
-];
+/* BAR */
+.loading-bar{
+    width:90%;
+    height:40px;
+    margin:auto;
+    border:4px solid #00ff00;
+    border-radius:20px;
+    overflow:hidden;
+    background:#111;
+    box-shadow:
+    0 0 10px #00ff00,
+    0 0 20px #00ff00;
+}
 
-let i = 0;
-let charIndex = 0;
-let currentLine = "";
+/* PROGRESS */
+.loading-progress{
+    width:0%;
+    height:100%;
+    background:linear-gradient(to right,#ffffff,#00ff00);
+    box-shadow:
+    0 0 20px #00ff00,
+    0 0 40px #00ff00;
+    animation:load 6s linear infinite;
+}
 
-function typeEffect(){
-    if(i < lines.length){
-        if(charIndex < lines[i].length){
-            currentLine += lines[i][charIndex];
-            terminal.innerHTML = lines.slice(0, i).join("\n") + "\n" + currentLine;
-            charIndex++;
-            setTimeout(typeEffect, 40);
-        } else {
-            currentLine = "";
-            charIndex = 0;
-            i++;
-            setTimeout(typeEffect, 500);
-        }
-    } else {
-        liveMode();
+/* ANIMATION */
+@keyframes load{
+    0%{
+        width:0%;
+    }
+
+    100%{
+        width:100%;
     }
 }
 
-/* LIVE UPDATES AFTER BOOT */
-function liveMode(){
-    setInterval(() => {
-        const time = new Date().toLocaleTimeString();
-        terminal.innerHTML += "\n[SYS LOG] " + time + " - System stable";
-        terminal.scrollTop = terminal.scrollHeight;
-    }, 3000);
+</style>
+
+<style>
+
+/* TERMINAL BOX */
+
+.terminal-box{
+    width:95%;
+    margin:auto;
+    margin-top:40px;
+    padding:25px;
+
+    background:rgba(0,0,0,0.85);
+
+    border:2px solid #00e5ff;
+
+    box-shadow:
+    0 0 10px #00e5ff,
+    0 0 25px #00e5ff;
+
+    border-radius:5px;
+
+    font-family:monospace;
+
+    overflow:hidden;
 }
 
-window.onload = typeEffect;
-</script>
+/* TERMINAL LINES */
+
+.terminal-line{
+    color:#66ff33;
+
+    font-size:20px;
+
+    margin:8px 0;
+
+    text-shadow:0 0 5px #00ff00;
+
+    animation:flicker 2s infinite;
+}
+
+/* SUCCESS */
+
+.success{
+    color:#7CFF00;
+    font-weight:bold;
+}
+
+/* LOG COLOR */
+
+.log{
+    color:#99ff66;
+}
+
+/* TERMINAL CURSOR EFFECT */
+
+.terminal-box::after{
+    content:"";
+
+    width:12px;
+    height:35px;
+
+    background:#00ffd5;
+
+    position:absolute;
+
+    right:40px;
+    bottom:20px;
+
+    animation:blink 1s infinite;
+}
+
+/* FLICKER */
+
+@keyframes flicker{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.8;
+    }
+
+    100%{
+        opacity:1;
+    }
+}
+
+/* BLINK */
+
+@keyframes blink{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:1;
+    }
+}</style>
 
 </body>
 </html>

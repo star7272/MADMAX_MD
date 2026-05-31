@@ -20,7 +20,35 @@ body, html {
     overflow: hidden;
 }
 
-/* Background Video */
+/* INTRO SCREEN */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+}
+
+#intro h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #38bdf8;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #38bdf8;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* BACKGROUND VIDEO */
 video.bg-video {
     position: fixed;
     right: 0;
@@ -32,7 +60,7 @@ video.bg-video {
     filter: brightness(35%);
 }
 
-/* Center Content */
+/* MAIN CONTENT */
 .container {
     position: relative;
     height: 100vh;
@@ -45,7 +73,6 @@ video.bg-video {
     padding: 20px;
 }
 
-/* Title */
 h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 40px;
@@ -57,14 +84,12 @@ h1 {
                  0 0 50px #0284c7;
 }
 
-/* Subtitle */
 p {
     color: #cbd5e1;
     margin-top: 10px;
     margin-bottom: 25px;
 }
 
-/* Button */
 a.button {
     display: inline-block;
     padding: 12px 24px;
@@ -86,11 +111,22 @@ a.button:hover {
 
 <body>
 
-<!-- BACKGROUND VIDEO (UPDATED LINK) -->
-<video class="bg-video" autoplay muted loop>
+<!-- INTRO SCREEN -->
+<div id="intro">
+    <h1>SKILLI-MD STARTING...</h1>
+</div>
+
+<!-- BACKGROUND VIDEO -->
+<video class="bg-video" autoplay muted loop playsinline preload="auto">
     <source src="https://files.catbox.moe/43i0if.mp4" type="video/mp4">
 </video>
 
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop id="bgMusic">
+    <source src="https://files.catbox.moe/qt9bt7.mp3"="audio/mpeg">
+</audio>
+
+<!-- MAIN CONTENT -->
 <div class="container">
     <h1>SKILLI-MD WHATSAPP-BOT</h1>
     <p>Welcome to the official bot dashboard</p>
@@ -100,16 +136,17 @@ a.button:hover {
     </a>
 </div>
 
-    
-<!-- BACKGROUND MUSIC -->
-<audio autoplay loop id="bgMusic">
-    <source src="https://files.catbox.moe/qt9bt7.mp3" type="audio/mpeg">
-</audio>
-    <script>
+<!-- INTRO SCRIPT -->
+<script>
+setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+}, 3000);
+
+// Enable music on first click (browser fix)
 document.addEventListener("click", function () {
     document.getElementById("bgMusic").play();
 });
-    </script>
+</script>
 
 </body>
 </html>

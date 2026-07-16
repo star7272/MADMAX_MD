@@ -3,312 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🥷🥷 MADMAX-MD 🥷🥷
-   WhatsApp Bot ⚡</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<title>🇰🇪☠️MADMAX-MD☠️🇰🇪</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-body, html {
-    height: 100%;
-    overflow: hidden;
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+    overflow:hidden;
 }
 
-/* INTRO SCREEN */
-#intro {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
+body::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:#ff0066;
+    filter:blur(120px);
+    top:10%;
+    left:15%;
 }
 
-/* LOADER BOX */
-.loader-box {
-    text-align: center;
-    color: #38bdf8;
-    font-family: 'Orbitron', sans-serif;
+body::after{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:#6a00ff;
+    filter:blur(120px);
+    bottom:10%;
+    right:15%;
 }
 
-.loader-box h1 {
-    font-size: 32px;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px #38bdf8;
+.card{
+    position:relative;
+    z-index:1;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:40px;
+    width:90%;
+    max-width:420px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 0 30px rgba(255,0,120,.4);
 }
 
-.loader-box p {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-top: 5px;
+h1{
+    font-size:45px;
+    color:#ff0066;
+    text-shadow:0 0 15px #ff0066;
+    margin-bottom:15px;
 }
 
-.loader-bar {
-    width: 220px;
-    height: 6px;
-    background: #1e293b;
-    margin: 20px auto 10px;
-    border-radius: 20px;
-    overflow: hidden;
+p{
+    color:#ddd;
+    margin-bottom:30px;
 }
 
-.loader-fill {
-    width: 0%;
-    height: 100%;
-    background: #38bdf8;
-    box-shadow: 0 0 10px #38bdf8;
-    transition: width 0.2s;
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    font-size:20px;
+    font-weight:bold;
+    color:#fff;
+    cursor:pointer;
+    background:linear-gradient(90deg,#ff0066,#ff6600);
+    transition:.3s;
 }
 
-.loader-text {
-    font-size: 14px;
-    margin-top: 5px;
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px #ff0066;
 }
-
-.status {
-    font-size: 11px;
-    color: #64748b;
-    margin-top: 8px;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0.3; }
-}
-
-/* BACKGROUND VIDEO */
-video.bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(35%);
-}
-
-/* MAIN CONTENT */
-.container {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    color: white;
-    padding: 20px;
-}
-
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 40px;
-    letter-spacing: 3px;
-    color: #38bdf8;
-    text-shadow: 0 0 5px #38bdf8,
-                 0 0 15px #0ea5e9,
-                 0 0 30px #0ea5e9,
-                 0 0 50px #0284c7;
-}
-
-p {
-    color: #cbd5e1;
-    margin-top: 10px;
-    margin-bottom: 25px;
-}
-
-a.button {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #38bdf8;
-    color: black;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-a.button:hover {
-    background: #0ea5e9;
-    transform: scale(1.05);
-}  
-</style> 
-    
-  <style>
-
-/* YOUR EXISTING CSS */
-body, html {
-    height: 100%;
-    overflow: hidden;
-}
-
-.container {
-    ...
-}
-
-/* HUD CORNERS CSS */
-.hud-frame {
-    ...
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-        repeating-linear-gradient(
-            transparent 0px,
-            transparent 3px,
-            rgba(56,189,248,0.03) 4px
-        );
-    z-index: 4;
-}
-
-/* MULTIPLE SCAN BEAMS */
-.scan-beam {
-    position: fixed;
-    left: -100%;
-    width: 120%;
-    height: 2px;
-    z-index: 6;
-    pointer-events: none;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #38bdf8,
-        #ffffff,
-        #38bdf8,
-        transparent
-    );
-    box-shadow:
-        0 0 10px #38bdf8,
-        0 0 20px #38bdf8,
-        0 0 40px #0ea5e9;
-    opacity: 0.8;
-}
-
-.beam1 {
-    animation: scanBeam 4s linear infinite;
-}
-
-.beam2 {
-    animation: scanBeam 4s linear infinite;
-    animation-delay: 1.3s;
-}
-
-.beam3 {
-    animation: scanBeam 4s linear infinite;
-    animation-delay: 2.6s;
-}
-
-@keyframes scanBeam {
-    0% {
-        top: -10%;
-        left: -120%;
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    100% {
-        top: 110%;
-        left: 120%;
-        opacity: 0;
-    }
-}
-
-</style>  
+</style>
 </head>
 
 <body>
 
-<!-- INTRO LOADER -->
-<div id="intro">
-    <div class="loader-box">
-        <h1>MADMAX-MD</h1>
-        <p>FREE WHATSAPP BOT</p>
+<div class="card">
+<h1>🇰🇪☠️MADMAX-MD☠️🇰🇪</h1>
+<p>Fast & Secure WhatsApp Pairing System</p>
 
-        <div class="loader-bar">
-            <div class="loader-fill" id="loaderFill"></div>
-        </div>
+<button onclick="window.open('http://46.101.124.46:1692/','_blank')">
+Open System
+</button>
 
-        <div class="loader-text" id="loaderText">0%</div>
-        <div class="status">STARTING SYSTEM...</div>
-    </div>
 </div>
-
-   <!-- MULTIPLE SCAN BEAMS -->
-<div class="scan-beam beam1"></div>
-<div class="scan-beam beam2"></div>
-<div class="scan-beam beam3"></div> 
-    
-<!-- BACKGROUND VIDEO -->
-<video class="bg-video" autoplay muted loop playsinline>
-    <source src="https://files.catbox.moe/v7jevr.mp4" type="video/mp4">
-</video>
-
-<!-- BACKGROUND MUSIC -->
-<audio autoplay loop id="bgMusic">
-    <source src="https://files.catbox.moe/qt9bt7.mp3" type="audio/mpeg">
-</audio>
-    
-    <!-- NEON HUD CORNERS -->
-<div class="hud-frame">
-    <div class="corner top-left"></div>
-    <div class="corner top-right"></div>
-    <div class="corner bottom-left"></div>
-    <div class="corner bottom-right"></div>
-</div>
-
-<!-- MAIN CONTENT -->
-<div class="container">
-    <h1>MADMAX-MD WHATSAPP-BOT</h1>
-    <p>Welcome to the official bot dashboard</p>
-
-    <a class="button" href="http://46.101.124.46:1692/" target="_blank">
-        Open Bot System
-    </a>
-</div>
-
-<!-- SCRIPT -->
-<script>
-let progress = 0;
-
-let loader = setInterval(() => {
-    progress += 2;
-
-    document.getElementById("loaderFill").style.width = progress + "%";
-    document.getElementById("loaderText").innerText = progress + "%";
-
-    if (progress >= 100) {
-        clearInterval(loader);
-
-        setTimeout(() => {
-            document.getElementById("intro").style.display = "none";
-        }, 500);
-    }
-}, 60);
-
-// Fix autoplay restriction
-document.addEventListener("click", function () {
-    const music = document.getElementById("bgMusic");
-    if (music) music.play();
-});
-</script>
 
 </body>
 </html>
